@@ -15,6 +15,7 @@ app.step2 = (function($) {
 			_bindListeners();
 			$(window).trigger('moduleLoaded', ['step2']);
 		});
+
 	}
 
 
@@ -30,8 +31,14 @@ app.step2 = (function($) {
 						})
 			.on('click', '.task-btn-del', function(event) {
 					$("."+event.currentTarget.name).remove();
-			});
+			})
+		    new $.Zebra_Tooltips($('.app-shell-img-question'), {
+	        'background_color': '#26C6DA',
+	        'color':            '#FFF',
+	    	'position':         'right',
+	    	'animation_speed':   180,
+	    	'animation_offset':  10,
+	    	'default_position':  'above'});
 		console.log('2 was binded');
 	}
-
 })(jQuery);

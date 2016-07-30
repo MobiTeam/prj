@@ -114,3 +114,11 @@ var app = (function($) {
 	}
 
 })(jQuery);
+
+    new $.Zebra_Tooltips($('.app-shell-img-question'), {
+        'background_color': '#26C6DA',
+        'color':            '#FFF',
+    	'position':         'center',
+    	'animation_speed':   180,
+    	'animation_offset':  10,
+    	'default_position':  'below'});
