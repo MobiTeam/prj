@@ -29,7 +29,7 @@ var app = (function($) {
 
 		$.uriAnchor.configModule({
 			schema_map : {
-				page: { step1: true, step2: true }
+				page: { step1: true, step2: true, step3: true, step4: true, step5: true }
 			}
 		});
 
@@ -56,9 +56,11 @@ var app = (function($) {
 
 		var newAnchor = $.uriAnchor.makeAnchorMap(),
 			oldAnchor = state.currentAnchor;
-
 		if(_updateAnchor(newAnchor)) {
 			_applyChances(newAnchor, oldAnchor);
+			$(".app-shell-progress-ul li").removeClass("selected-step");
+			var numberStep = +(newAnchor.page.replace(/\D/g, ''))-1;
+			$(".app-shell-progress-ul li:eq("+numberStep+")").addClass("selected-step");
 		}
 	
 	}

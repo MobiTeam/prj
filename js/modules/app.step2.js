@@ -17,7 +17,20 @@ app.step2 = (function($) {
 		});
 	}
 
+
 	function _bindListeners() {
+		var trN = 1;
+		$(_configMap.mainSelector)
+			.on('click', '.task-btn-add', function() {
+				++trN;
+				$("#app-shell-step2-task-table").append("<tr class='app-shell-step2-task-table-tr-"+ trN +"'></tr>");
+				$('.app-shell-step2-task-table-tr-'+ trN).html("<td><input class='app-shell-step2-task-text app-shell-step2-task-text-"+ trN +"' type='text' /></td>\
+					<td><input class='task-btn-del' type='button' value='- Удалить'  id='app-shell-step2-task-del'  \
+					name='app-shell-step2-task-table-tr-"+ trN +"' /></td>");
+						})
+			.on('click', '.task-btn-del', function(event) {
+					$("."+event.currentTarget.name).remove();
+			});
 		console.log('2 was binded');
 	}
 

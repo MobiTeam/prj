@@ -188,12 +188,12 @@ span.item-description {
 .textarea-form-control:active {
 	border-radius: 7px;
 	padding: 7px;
-	resize: none;
+	/*resize: none;*/
 }
 
 .textarea-form-control:focus {
 	outline: none;
-	box-shadow: 0 0 0 1px #336aba;
+	box-shadow: 0 0 0 1.2px #1E88E5;
 	background: white;
 }
 
@@ -219,3 +219,132 @@ span.item-description {
 	background-color: #f3f3f3;
 }
 
+.app-shell-step2-task-text{
+ 	height:34px;
+ 	width:400px;
+ 	padding: 3px;
+	border: 1px solid #aaa;
+	box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+	border-radius: 2px;
+	padding-right: 30px;
+	-moz-transition: padding .25s;
+	-webkit-transition: padding .25s;
+	-o-transition: padding .25s;
+	transition: padding .25s;
+}
+
+.task-btn-add {
+    padding: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #dddddd;
+    background-color: #1E88E5;
+    border: 1px solid #dddddd;
+}
+
+.task-btn-add:focus {
+	outline: none;
+}
+
+.task-btn-add:active {
+	color: #336aba;
+    background-color: #ffffff;
+    border: 2px solid #336aba;
+    margin-left: -1px;
+}
+
+.task-btn-del {
+    padding: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #FAFAFA;
+    background-color: #e57373;
+    border: 1px solid #dddddd;
+}
+
+.task-btn-del:focus {
+	outline: none;
+}
+
+.task-btn-del:active {
+	color: #336aba;
+    background-color: #ffffff;
+    border: 2px solid #e57373;
+    margin-left: -1px;
+}
+
+#app-shell-progress{
+	width: 100%;
+	padding-left: 40px;
+	padding-top: 35px;
+	padding-right: 40px;
+}
+
+/*#app-shell-progress>ul>li{
+	display: inline-block;
+}*/
+
+.app-shell-progress-ul li {
+  background-color: #FFF176;
+  /*border: 1px solid red;*/
+  border-radius: 5px;
+  display: inline;
+  padding: 12px 40px 10px 40px;
+  margin-right: 1px;
+  width:auto;
+
+}
+.app-shell-progress-ul li>a {
+  text-decoration: none;
+}
+
+.app-shell-progress-ul li::before, .app-shell-progress-ul li::after {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  border-color: transparent;
+  border-left-color: #fff;
+  border-radius: 10px;
+}
+
+.app-shell-progress-ul li::before {
+  border-width: 25px; 
+  margin-top: -16px;
+  margin-left: 86px;
+}
+.app-shell-progress-ul li::after {
+    border-left-color: #FFF176;
+    border-width: 23px;
+    margin-top: -14.6px;
+    margin-left: 34px;
+    /* padding-left: 7px; */
+    border-left-width: 25px;
+}
+
+.app-shell-progress-ul li.selected-step {
+  background-color: #4FC3F7;
+  color: #fff;
+}
+
+.app-shell-progress-ul li.selected-step::after {
+  border-left-color: #4FC3F7;
+}
+
+.app-shell-progress-ul li.completed-step {
+  background-color: #81C784;
+  color: #fff;
+}
+
+.app-shell-progress-ul li.completed-step::after {
+  border-left-color: #81C784;
+}
+
+.app-shell-progress-ul li:last-child::after {
+  border-left-color: transparent;
+}
