@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Главная страница</title>
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="css/app.shell.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	
+	<div id="app-shell">
+		
+		<div id="app-shell-header">
+			
+			<a href="index.html">
+				<div id="app-shell-logo">
+					<img src="img/logo.png" />
+				</div>
+			</a>
+			
+			<div id="app-shell-titletext">
+				<h2>Разработка рабочих программ дисциплин</h2>
+				<h3>Югорский государственный университет</h3>
+			</div>
+			
+		</div>
+		
+		<div class="screen-center">
+			<img class="preloader small-loader" src="img/circles.svg"> Загрузка...
+		</div>
+
+		<div id="app-shell-content">			
+		</div>
+
+	</div>
+	
+	<!-- jquery libs -->
+	<script src="js/jquery/jquery.min.js"></script>
+	<script src="js/jquery/jquery.uriAnchor.js"></script>
+		
+
+	<!-- custom modules -->
+	<script src="js/modules/app.js"></script>
+	<script src="js/modules/app.shell.js"></script>
+	<script src="js/modules/app.step1.js"></script>
+	<script src="js/modules/app.step2.js"></script>
+
+
+	<script type="text/javascript">app.start();</script>
+</body>
+</html>

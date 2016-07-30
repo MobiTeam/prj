@@ -1,0 +1,221 @@
+/* wrapper */
+
+#app-shell {
+	min-height: 100%;
+	min-width: 760px;
+	max-width: 1000px;
+	margin: 0 auto;
+	background: white;
+}
+
+#app-shell-step-2,
+#app-shell-step-3,
+#app-shell-step-4,
+#app-shell-step-5 {
+	display: none;
+}
+
+/* header styles */
+
+#app-shell-header {
+	width: 100%;
+	background: white;
+	padding: 0px 40px;
+}
+
+#app-shell-header:after {
+	content: "";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+#app-shell-logo {
+	width: 110px;
+	height: 125px;
+	background: #336aba;
+	float: left;
+}
+
+#app-shell-logo img {
+	width: 84px;
+	display: block;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+#app-shell-titletext {
+	padding: 30px;
+	float: left;
+}
+
+/* content styles */
+
+#app-shell-content {
+	width: 100%;
+	padding: 40px;
+}
+
+/* discipline-list */
+
+ul.discipline-list {
+	padding-left: 25px;
+}
+
+ul.discipline-list li {
+	color: #b5b5b5;
+	font-size: 28px;
+}
+
+ul.discipline-list li span {
+	color: black;
+	font-size: 16px;
+	vertical-align: middle;
+}
+
+span.item-description {
+	color: #696969!important;
+}
+
+.discipline-box {
+	width: 60%;
+	vertical-align: top;
+}
+
+.disciplines {
+	margin: 15px;
+}
+
+.table-scroll-wrapper {
+	overflow-y: scroll;
+	height: 150px;
+}
+
+.checkbox-td {
+	width: 20px;
+}
+
+.select-discipline-description {
+	color: grey;
+	padding: 0px 0px 0px 15px;
+}
+
+.disciplines-open-btn, .disciplines-toggle-el, .form-control-btn, .next-btn, .prev-btn {
+	padding: 10px 15px;
+	border-radius: 7px;	
+	cursor: pointer;
+}
+
+.next-btn, .prev-btn {
+	border: none;
+}
+
+.next-btn:focus , .prev-btn:focus {
+	outline: none;
+}
+
+.disciplines-open-btn, .next-btn, .prev-btn {
+	color: white;
+	background: #336aba;
+}
+
+.disciplines-toggle-el {
+	background: #f3f3f3;
+	border: 1px solid #e1e1e1;
+	color: #666666;
+}
+
+.selected-disciplines {
+	padding-left: 25px;
+}
+
+.input-arrow {
+	width: 14px;
+	height: 8px;
+	background: url('../img/input-arrow.png') no-repeat;
+	float: right;
+    margin-top: 6px;
+}
+
+.discipline-box-opened {
+
+}
+
+.discipline-box-closed {
+	-moz-transform: rotate(180deg); /* Для Firefox */
+    -ms-transform: rotate(180deg); /* Для IE */
+    -webkit-transform: rotate(180deg); /* Для Safari, Chrome, iOS */
+    -o-transform: rotate(180deg); /* Для Opera */
+    transform: rotate(180deg);
+}
+
+.textarea-form-control {
+	background-color: #f3f3f3;
+	border-radius: 7px;
+	padding: 7px;
+	resize: none;
+}
+
+.form-control-btn {
+	color: white;
+	background: #336aba;
+	width:110px;
+}
+
+.question-btn {
+    padding: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 21px;
+    cursor: pointer;
+    color: #dddddd;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+}
+
+.question-btn:focus {
+	outline: none;
+}
+
+.question-btn:active {
+	color: #336aba;
+    background-color: #ffffff;
+    border: 2px solid #336aba;
+    margin-left: -1px;
+}
+
+.textarea-form-control:active {
+	border-radius: 7px;
+	padding: 7px;
+	resize: none;
+}
+
+.textarea-form-control:focus {
+	outline: none;
+	box-shadow: 0 0 0 1px #336aba;
+	background: white;
+}
+
+#app-shell-step-4-table {
+	margin-top: 10px;
+}
+
+.final-table>thead {
+	background-color: #336aba;
+}
+
+.final-table>thead>tr>td {
+	color:white;
+	padding: 5px;
+}
+
+.final-table>tbody>tr>td {
+	border-right: 1px solid #e1e1e1;
+	padding: 5px;
+}
+
+.final-table>tbody>tr:nth-child(odd) {
+	background-color: #f3f3f3;
+}
+
