@@ -7,8 +7,8 @@ app.data = (function($) {
 	if(_devMode) {
 
 		var _ROUTES = {
-			'specialities':  {
-				url 			: 'fake/specialities.json',
+			'speciality':  {
+				url 			: 'fake/speciality.json',
 				type		    : 'GET',
 				defaultCallback : null	
 			}
@@ -46,11 +46,16 @@ app.data = (function($) {
 				data    : param.query, 
 				dataType: 'json',
 				success: function(response) {
-					param.callback && param.callback(resposne);	
+					param.callback && param.callback(response);	
 				},
-				error: function() {
-					throw new Error('Server is offline');
-				}
+				error: function(response) {					
+					if((response.status >= 200 && response.status < 300) || response.status == 304) {
+						throw new Error('JSON parse error');
+					} else {
+						throw new Error('Server is offline');
+					}
+				},
+				cache: false
 			})
 
 		} else {
