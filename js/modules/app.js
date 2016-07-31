@@ -2,6 +2,11 @@
 
 var app = (function($) {
 
+	'use strict';
+
+	// current app state
+	// icluded information about current URL, cached jQuery DOM elements and action list
+
 	var state = {
 		currentAnchor: {
 			page: 'step1'
@@ -19,10 +24,14 @@ var app = (function($) {
 		start: start
 	}
 
+	// start application function
+	// inclided initialisation, configuration and binding events listeners
+
 	function start() {
 		app.shell.ini();
 		_configApp();
 		_bindListeners();
+		_markMenuItem(state.currentAnchor.page);
 	}
 
 	function _configApp() {
@@ -33,39 +42,66 @@ var app = (function($) {
 			}
 		});
 
-		$.uriAnchor.setAnchor(state.currentAnchor);
+        new $.Zebra_Tooltips($('.app-shell-progress-step-information'), {
+        	'background_color': '#26C6DA',
+        	'color':            '#FFF',
+    		'position':         'center',
+    		'animation_speed':   180,
+    		'animation_offset':  10,
+    		'default_position':  'below'});
+
+
+        // Доделать (перебрасывает на page=step1)
+        // var newAnchor = $.uriAnchor.makeAnchorMap();
+
+        // if(newAnchor.page) {
+        // 	_updateAnchor(newAnchor);
+        // } else {
+       	// 	_updateAnchor(state.currentAnchor);
+        // }
+
+        _updateAnchor(state.currentAnchor);
+
 
 	}
 
 	function _bindListeners() {
 
-		$(window).bind('hashchange', _onHashChange)
-				 .bind('moduleLoaded', function(event, moduleId) {
-
-				 	var currentModule = $.uriAnchor.makeAnchorMap().page;
-				 	if(moduleId == currentModule) {
-				 		_hidePreloader();
-				 		_animateMainBlock();
-				 	}
-				 	
-				 });
+		$(window).bind('hashchange',   _onHashChange)
+				 .bind('moduleLoaded', _onModuleLoad);
 
 	}
+
+	// events handlers
 
 	function _onHashChange() {
 
 		var newAnchor = $.uriAnchor.makeAnchorMap(),
 			oldAnchor = state.currentAnchor;
+
 		if(_updateAnchor(newAnchor)) {
-			_applyChances(newAnchor, oldAnchor);
-			$(".app-shell-progress-ul li").removeClass("selected-step");
-			var numberStep = +(newAnchor.page.replace(/\D/g, ''))-1;
-			$(".app-shell-progress-ul li:eq("+numberStep+")").addClass("selected-step");
+			
+			_applyChanges(newAnchor, oldAnchor);
+			_markMenuItem();
+
 		}
 	
 	}
 
-	function _applyChances(newObj, oldObj) {
+	function _onModuleLoad(event, moduleId) {
+		
+	 	var currentModule = $.uriAnchor.makeAnchorMap().page;
+	 	
+	 	if(moduleId == currentModule) {
+	 		_hidePreloader();
+	 		_animateMainBlock();
+	 	}
+
+	}
+
+	//  some functions
+
+	function _applyChanges(newObj, oldObj) {
 
 		for(var key in newObj) {
 			if(!~key.indexOf('_s_')) {
@@ -94,9 +130,9 @@ var app = (function($) {
 
 	function _animateMainBlock() {
 		state.jqueryMap.$mainBlock
-						.css({'opacity': '0.8',
+						.css({'opacity'  : '0.8',
 							  'marginTop': '-10px'})
-						.animate({ 'opacity': '1',
+						.animate({ 'opacity'  : '1',
 								   'marginTop': '0px' }, 300);
 	}
 
@@ -113,12 +149,14 @@ var app = (function($) {
 
 	}
 
-})(jQuery);
+	// переписать
+	function _markMenuItem(item) {
+		
+		var numberStep = +(state.currentAnchor.page.replace(/\D/g, '')) - 1;
 
-    new $.Zebra_Tooltips($('.app-shell-img-question'), {
-        'background_color': '#26C6DA',
-        'color':            '#FFF',
-    	'position':         'center',
-    	'animation_speed':   180,
-    	'animation_offset':  10,
-    	'default_position':  'below'});
+		$(".app-shell-progress-ul li").removeClass("selected-step");
+		$(".app-shell-progress-ul li:eq("+numberStep+")").addClass("selected-step");
+	
+	}
+
+})(jQuery);

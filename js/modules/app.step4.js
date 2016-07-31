@@ -1,5 +1,7 @@
 app.step4 = (function($) {
 
+	'use strict';
+	
 	var _configMap = {
 		templateUrl : 'tmpl/app.step4.html',
 		mainSelector: '#app-shell-step-4'

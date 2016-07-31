@@ -1,10 +1,17 @@
-﻿<!DOCTYPE html>
+﻿<!-- development version -->
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Главная страница</title>
 	<link rel="stylesheet" href="css/app.css">
 	<link rel="stylesheet" href="css/app.shell.css">
+	<link rel="stylesheet" href="css/app.step1.css">
+	<link rel="stylesheet" href="css/app.step2.css">
+	<link rel="stylesheet" href="css/app.step3.css">
+	<link rel="stylesheet" href="css/app.step4.css">
+	<link rel="stylesheet" href="css/app.step5.css">
 	<link rel="stylesheet" href="css/zebra_tooltips.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,700' rel='stylesheet' type='text/css'>
 </head>
@@ -25,32 +32,13 @@
 				<h3>Югорский государственный университет</h3>
 			</div>			
 		</div>
-
-		<div id="app-shell-progress">
-			<ul class="app-shell-progress-ul">
-			  <li class="selected-step">
-			  	 <a class="app-shell-progress-step-information" title="На данном шаге содержится справочная информация1"  href="#!page=step1">Шаг 1</a>
-		  	  </li>
-			  <li>
-			 	 <a class="app-shell-progress-step-information" title="На данном шаге содержится справочная информация2"  href="#!page=step2">Шаг 2</a>
-			  </li>
-			  <li>
-			  	 <a class="app-shell-progress-step-information" title="На данном шаге содержится справочная информация3"  href="#!page=step3">Шаг 3</a>
-		  	  </li>
-			  <li>
-			  	 <a class="app-shell-progress-step-information" title="На данном шаге содержится справочная информация4"  href="#!page=step4">Шаг 4</a>
-		  	  </li>
-			  <li>
-			  	 <a class="app-shell-progress-step-information" title="На данном шаге содержится справочная информация5"  href="#!page=step5">Шаг 5</a>
-			  </li>
-			</ul>	
-		</div>
 		
 		<div class="screen-center">
 			<img class="preloader small-loader" src="img/circles.svg"> Загрузка...
 		</div>
-
+		
 		<div id="app-shell-content">			
+		
 		</div>
 
 	</div>
@@ -58,9 +46,8 @@
 	<!-- jquery libs -->
 	<script src="js/jquery/jquery.min.js"></script>
 	<script src="js/jquery/jquery.uriAnchor.js"></script>
-	<script src="js/jquery/jquery.zebra_tooltips.js"></script>
+	<script src="js/jquery/jquery.zebraTooltips.min.js"></script>
 		
-
 	<!-- custom modules -->
 	<script src="js/modules/app.js"></script>
 	<script src="js/modules/app.shell.js"></script>
@@ -70,15 +57,9 @@
 	<script src="js/modules/app.step4.js"></script>
 	<script src="js/modules/app.step5.js"></script>
 
-
-	<script type="text/javascript">app.start();
-	    new $.Zebra_Tooltips($('.app-shell-progress-step-information'), {
-        'background_color': '#26C6DA',
-        'color':            '#FFF',
-    	'position':         'center',
-    	'animation_speed':   180,
-    	'animation_offset':  10,
-    	'default_position':  'below'});
+	<!-- start application -->
+	<script type="text/javascript">
+		app.start();
 	</script>
 </body>
 </html>

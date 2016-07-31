@@ -1,4 +1,6 @@
 app.step5 = (function($) {
+	
+	'use strict';
 
 	var _configMap = {
 		templateUrl : 'tmpl/app.step5.html',

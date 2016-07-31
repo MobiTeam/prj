@@ -1,5 +1,7 @@
 app.step2 = (function($) {
 
+	'use strict';
+
 	var _configMap = {
 		templateUrl : 'tmpl/app.step2.html',
 		mainSelector: '#app-shell-step-2'
@@ -11,15 +13,30 @@ app.step2 = (function($) {
 	}
 
 	function ini() {
+
 		$(_configMap.mainSelector).load(_configMap.templateUrl, function() {
+			_configModule();
 			_bindListeners();
 			$(window).trigger('moduleLoaded', ['step2']);
 		});
 
 	}
 
+	function _configModule() {
+
+		 new $.Zebra_Tooltips($('.app-shell-img-question'), {
+	        'background_color': '#26C6DA',
+	        'color':            '#FFF',
+	    	'position':         'right',
+	    	'animation_speed':   180,
+	    	'animation_offset':  10,
+	    	'default_position':  'above'});
+
+	}
 
 	function _bindListeners() {
+
+
 		var trN = 1;
 		$(_configMap.mainSelector)
 			.on('click', '.task-btn-add', function() {
@@ -32,13 +49,11 @@ app.step2 = (function($) {
 			.on('click', '.task-btn-del', function(event) {
 					$("."+event.currentTarget.name).remove();
 			})
-		    new $.Zebra_Tooltips($('.app-shell-img-question'), {
-	        'background_color': '#26C6DA',
-	        'color':            '#FFF',
-	    	'position':         'right',
-	    	'animation_speed':   180,
-	    	'animation_offset':  10,
-	    	'default_position':  'above'});
+		   
+		
+
 		console.log('2 was binded');
+
 	}
+
 })(jQuery);

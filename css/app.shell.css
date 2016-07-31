@@ -348,7 +348,9 @@ span.item-description {
 .app-shell-progress-ul li:last-child::after {
   border-left-color: transparent;
 }
-.app-shell-img-question{
+
+.app-shell-img-question {
 	width: 24px;
 	height:24px;
+	vertical-align: sub;
 }
