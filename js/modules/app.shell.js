@@ -13,7 +13,7 @@ app.shell = (function($) {
 						 <div id="app-shell-step-5">Загрузка...\
 						 </div>';
 
-	var _navigation = '<div id="app-shell-progress">\
+/*	var _navigation = '<div id="app-shell-progress">\
 						<ul class="app-shell-progress-ul">\
 						  <li>\
 						  	 <a class="app-shell-progress-step-information" title="На данном шаге содержится справочная информация1"  href="#!page=step1">Шаг 1</a>\
@@ -31,7 +31,7 @@ app.shell = (function($) {
 						  	 <a class="app-shell-progress-step-information" title="На данном шаге содержится справочная информация5"  href="#!page=step5">Шаг 5</a>\
 						  </li>\
 						</ul>\
-					</div>';					 
+					</div>';*/					 
 
 	var $container = $('#app-shell-content');
 
@@ -41,7 +41,7 @@ app.shell = (function($) {
 
 	function ini() {
 
-		$container.html(_mainTemplate).before(_navigation);
+		$container.html(_mainTemplate);
 
 		for(var key in app) {
 			key != 'shell' && app[key].ini && app[key].ini();

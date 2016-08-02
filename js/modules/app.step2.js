@@ -30,6 +30,7 @@ app.step2 = (function($) {
 	    	'position':         'right',
 	    	'animation_speed':   180,
 	    	'animation_offset':  10,
+	    	'close_on_click':    false,
 	    	'default_position':  'above'});
 
 	}
