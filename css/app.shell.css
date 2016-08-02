@@ -43,7 +43,7 @@
 }
 
 #app-shell-logo img {
-	width: 84px;
+	width: 88px;
 	display: block;
 	margin: 0 auto;
 	margin-top: 20px;
@@ -105,9 +105,13 @@ span.item-description {
 	padding: 0px 0px 0px 15px;
 }
 
-.disciplines-open-btn, .disciplines-toggle-el, .form-control-btn, .next-btn, .prev-btn {
+.disciplines-toggle-el {
 	padding: 10px 15px;
 	border-radius: 7px;	
+	cursor: pointer;
+}
+
+.disciplines-open-btn, .form-control-btn, .next-btn, .prev-btn {
 	cursor: pointer;
 }
 
@@ -119,10 +123,28 @@ span.item-description {
 	outline: none;
 }
 
-.disciplines-open-btn, .next-btn, .prev-btn {
-	color: white;
-	background: #336aba;
+.disciplines-open-btn, .next-btn, .prev-btn  {
+/*	color: white;
+	background: #336aba;*/
+	background-color: #336aba;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;/**/
+    text-decoration: none;
+    /*display: inline-block;*/
+    font-size: 16px;
 }
+.next-btn, .prev-btn  {
+	margin-top: 25px;
+}
+
+.next-btn:hover, .prev-btn:hover  {
+    transition: all 0.5s ease-out;
+    box-shadow: 3px 4px 6px 0 rgba(0,0,0,0.25);
+}
+
+
 
 .disciplines-toggle-el {
 	background: #f3f3f3;
@@ -165,6 +187,7 @@ span.item-description {
 	color: white;
 	background: #336aba;
 	width:110px;
+	padding: 8px;
 }
 
 .question-btn {
@@ -244,7 +267,7 @@ span.item-description {
     border-radius: 10px;
     cursor: pointer;
     color: #dddddd;
-    background-color: #1E88E5;
+    background-color: #336aba;
     border: 1px solid #dddddd;
 }
 
@@ -302,6 +325,7 @@ span.item-description {
   width:auto;
 
 }
+
 .app-shell-progress-ul li>a {
   text-decoration: none;
 }
@@ -322,6 +346,7 @@ span.item-description {
   margin-top: -16px;
   margin-left: 86px;
 }
+
 .app-shell-progress-ul li::after {
     border-left-color: #FFF176;
     border-width: 23px;
@@ -371,9 +396,11 @@ span.item-description {
 	padding:5px;
 	width: 100%;
 }
+
 #app_vertical_menu>ul{
 	width: 100%;
 }
+
 #app_vertical_menu>ul>li{
 	font-size: 17px;
     font-weight: 500;
@@ -383,6 +410,7 @@ span.item-description {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
 #app_vertical_menu>ul>li:first-child{
 	border-top: 1px solid #ddd;
 	font-weight: 600;
@@ -392,12 +420,15 @@ span.item-description {
 #app_vertical_menu>ul>li>a{
 	text-decoration: none;
 }
+
 #app_vertical_menu>ul>li>a:link{
 	color:#424242;
 }
+
 #app_vertical_menu>ul>li>a:visited{
 	color:#424242;
 }
+
 #app_vertical_menu>ul>li>a:hover{
 	color:#2196F3;
 }
