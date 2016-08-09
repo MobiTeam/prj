@@ -28,11 +28,10 @@ app.step2 = (function($) {
 	        'background_color': '#26C6DA',
 	        'color':            '#FFF',
 	    	'position':         'right',
-	    	'animation_speed':   180,
+	    	'animation_speed':   250,
 	    	'animation_offset':  10,
 	    	'close_on_click':    false,
 	    	'default_position':  'above'});
-
 	}
 
 	function _bindListeners() {
