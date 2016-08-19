@@ -1,0 +1,235 @@
+{
+    "1": {
+        "shell": [
+            {
+                "title": "Разработка ООП",
+                "desc" : "на текущий год",
+                "page" : "shell.oop"
+            },
+            {
+                "title": "РПД",
+                "desc" : "на утверждении",
+                "href" : "shell.rpd.valid"
+            },
+            {
+                "title": "ООП",
+                "desc" : "на утверждении",
+                "href" : "shell.oop.valid"
+            },
+            {
+                "title": "ООП",
+                "desc" : "Мои",
+                "href" : "shell.oop.mine"
+            }
+        ]
+    },
+    "2": {
+        "shell": [
+            {
+                "title": "Разработка ООП",
+                "desc" : "на текущий год",
+                "page" : "shell.oop"
+            },
+            {
+                "title": "РПД",
+                "desc" : "на утверждении",
+                "href" : "shell.rpd.valid"
+            },
+            {
+                "title": "ООП",
+                "desc" : "на утверждении",
+                "href" : "shell.oop.valid"
+            },
+            {
+                "title": "ООП",
+                "desc" : "Мои",
+                "href" : "shell.oop.mine"
+            }
+        ],
+        "shell.oop": [
+            {
+                "title": "Разработка ООП",
+                "desc" : "на текущий год",
+                "page" : "shell.oop"
+            },
+            {
+                "title": "РПД",
+                "desc" : "на утверждении",
+                "href" : "shell.rpd.valid"
+            },
+            {
+                "title": "ООП",
+                "desc" : "на утверждении",
+                "href" : "shell.oop.valid"
+            },
+            {
+                "title": "ООП",
+                "desc" : "Мои",
+                "href" : "shell.oop.mine"
+            }  
+        ],
+        "shell.oop.create": [
+            {
+                "title":"Сведения о направлении",
+                "desc" :"Код, наименование подготовки",
+                "href" :"shell.oop.create.step1"
+            },
+            {
+                "title":"Цель и сроки освоения",
+                "desc" :"направления подготовки",
+                "href" :"shell.oop.create.step2"
+            },
+            {
+                "title":"Область и объекты",
+                "desc" :"профессиональной деятельности",
+                "href" :"shell.oop.create.step3"
+            },
+            {
+                "title":"Виды и задачи",
+                "desc" :"профессиональной деятельности",
+                "href" :"shell.oop.create.step4"
+            },
+            {
+                "title":"Сведения о практиках",
+                "desc" :"направления подготовки",
+                "href" :"shell.oop.create.step5"
+            },
+            {
+                "title":"Основные сведения о ППС",
+                "desc" :"привлеченному к преподаванию",
+                "href" :"shell.oop.create.step6"
+            },
+            {
+                "title":"Численность педагогических работников",
+                "desc" :"по типу занятости",
+                "href" :"shell.oop.create.step7"
+            },
+            {
+                "title":"Основные сведения о ППС",
+                "desc" :"по степеням",
+                "href" :"shell.oop.create.step8"
+            },
+            {
+                "title":"Основные сведения о ППС",
+                "desc" :"по категориям",
+                "href" :"shell.oop.create.step9"
+            },
+            {
+                "title":"Основные сведения о ППС",
+                "desc" :"по профилю образования",
+                "href" :"shell.oop.create.step10"
+            },
+            {
+                "title":"Количество экземпляров различной литературы",
+                "desc" :"по категориям",
+                "href" :"shell.oop.create.step11"
+            }
+        ]
+    },
+    "3": {
+        "shell": [
+            {
+                "title": "ООП",
+                "desc" : "института",
+                "page" : "shell.oop.institute"
+            },
+            {
+                "title": "РПД",
+                "desc" : "института",
+                "href" : "shell.rpd.institute"
+            },
+            {
+                "title": "ООП",
+                "desc" : "на утверждении",
+                "href" : "shell.oop.valid"
+            },
+            {
+                "title": "РПД",
+                "desc" : "На утверждении",
+                "href" : "shell.rpd.valid"
+            }
+        ],
+        "shell.oop.institute": [
+            {
+
+            }
+        ]
+    },
+
+    "4": {
+        "shell": [
+            {
+                "title": "ООП",
+                "desc" : "все",
+                "page" : "shell.oop.all"
+            },
+            {
+                "title": "РПД",
+                "desc" : "все",
+                "href" : "shell.rpd.all"
+            },
+            {
+                "title": "ООП",
+                "desc" : "на утверждении",
+                "href" : "shell.oop.valid"
+            },
+            {
+                "title": "РПД",
+                "desc" : "На утверждении",
+                "href" : "shell.rpd.valid"
+            }
+        ],
+        "shell.oop.all": [
+            {
+
+            }
+        ]
+    },
+    "5": {
+        "shell": [
+            {
+                "title": "Дисциплины",
+                "desc" : "мои",
+                "page" : "shell.discipline.mine"
+            },
+            {
+                "title": "РПД",
+                "desc" : "мои",
+                "href" : "shell.rpd.mine"
+            },
+            {
+                "title": "РПД",
+                "desc" : "на утверждении",
+                "href" : "shell.rpd.valid"
+            },
+            {
+                "title": "ООП",
+                "desc" : "в которых участвую",
+                "href" : "shell.oop.mine"
+            }
+        ],
+        "shell.rpd.mine": [
+            {
+                "title": "Справочная информация",
+                "desc" : "информация",
+                "href" :"shell.rpd.mine.step1"  
+            },
+            {
+                "title": "Цель и задачи",
+                "desc" : "информация",
+                "href" :"shell.rpd.mine.step2"  
+            },
+            {
+                "title": "Требования к данной дисциплинеи",
+                "desc" : "информация",
+                "href" :"shell.rpd.mine.step3"  
+            },
+            {
+                "title": "Формирование разделов и модулей",
+                "desc" : "информация",
+                "href" :"shell.rpd.mine.step4"  
+            }
+        ]
+    }
+}
+

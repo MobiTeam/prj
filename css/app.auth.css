@@ -1,0 +1,100 @@
+#app-auth {
+	display: none;
+}
+
+#app-authorization {
+	padding-top: 30px;
+}
+
+#app-authorization-logo{
+    margin: 0 auto 30px;
+    background: url('../img/logo-lg.png') no-repeat;
+    width: 122px;
+    height: 120px;
+}
+
+#app-authorization-title{
+	margin: 10px auto;
+
+}
+#app-authorization-title h1{
+	text-align: center;
+    font-family: 'Roboto' !important;
+    color: #000;
+    font-weight: normal;
+    margin-bottom: 80px;
+}
+
+#app-authorization-box {
+	/*margin: 65px 0px;*/
+	left: 50%;
+	margin-left: -200px;
+	width: 400px;
+	position: relative;
+	/*position: absolute;*/
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#app-authorization-box input {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	-webkit-appearance: none;
+}
+
+#app-authorization-box h2 {
+	background-color: #336aba;
+	color: #fff;
+	text-align: center;
+	font-size: 28px;
+	padding: 20px 26px;
+	margin: 0px;
+}
+
+#app-authorization-box fieldset {
+	background-color: #fff;
+	padding: 20px 26px;
+}
+
+#app-authorization-box fieldset label {
+		font-size: 18px;
+}
+
+#app-authorization-box fieldset p {
+	color: #777;
+	margin-bottom: 14px;
+}
+
+#app-authorization-box fieldset p:last-child {
+	margin-bottom: 0;
+}
+
+#app-authorization-box fieldset input {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 1px;
+}
+
+#app-authorization-box fieldset input[type="text"], #app-authorization-box fieldset input[type="password"] {
+	background-color: #eee;
+	color: #777;
+	height: 40px;
+	padding: 4px 10px;
+	width: 328px;
+}
+
+#app-authorization-box fieldset input[type="submit"] {
+	display: block;
+	margin: 0 auto;
+}
+
+#app-authorization-box fieldset input[type="submit"]:hover {
+	background-color: #0D47A1;
+}
+
+#app-authorization-box__message {
+	color: red;
+	display: none;
+}

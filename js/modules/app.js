@@ -1,162 +1,374 @@
-// main app module
-
 var app = (function($) {
 
 	'use strict';
 
-	// current app state
-	// icluded information about current URL, cached jQuery DOM elements and action list
+	var _state = {
 
-	var state = {
-		currentAnchor: {
-			page: 'step1'
+		// cached jquery dom collection
+		jQmap : {
+			ov       : $('.on-loading'),
+			container: $('#app-shell'),
+			mainBlock: $('#app-shell-content'),
 		},
-		jqueryMap: {
-			$preloader: $('.screen-center'),
-			$mainBlock: $('#app-shell-content')
+
+		// current anchor
+		currentAnchor : {
+
 		},
+
+		moduleHistory : [],
+
 		actionList: {
-			'page': _showPage
+			'page': _openPage
+		}, 
+
+		// information about auth user
+		currentUserInfo: {
+			// TO-DO my be array
+			// foreach, extends roles, after that append
+			roles: [{"id":1, "name":"ADMIN", "desc": "Администратор"}]
+		},
+
+		selectedRole: null,
+
+		// roles ACL
+		// describes what pages avail to open		
+
+		// TO-DO remove from app.menu.json
+		acl : {
+			// dislogin
+			'0': {
+				'auth': true,
+				'auth.role': true
+			},
+			// admin
+			'1': {
+				'auth': true,
+				'auth.role': true,
+				'shell': true
+			},
+			// head department
+			'2': {
+				'auth': true,
+				'auth.role': true,
+				'shell': true,
+				'shell.oop': true,
+				'shell.oop.create': true,
+				'shell.oop.create.step1': true,
+				'shell.oop.create.step2': true,
+				'shell.oop.create.step3': true,
+				'shell.oop.create.step4': true,
+				'shell.oop.create.step5': true,
+				'shell.oop.create.step6': true,
+				'shell.oop.create.step7': true,
+				'shell.oop.create.step8': true,
+				'shell.oop.create.step9': true,
+				'shell.oop.create.step10': true,
+				'shell.oop.create.step11': true
+			},
+			// director
+			'3': {
+				'auth': true,
+				'auth.role': true,
+				'shell': true,
+				'shell.oop.institute': true,
+			},
+			// teach department
+			'4': {
+				'shell': true
+			},
+			// teacher
+			'5': {
+				'shell': true
+			}
 		}
-	}
 	
-	return {
-		start: start
 	}
 
-	// start application function
-	// inclided initialisation, configuration and binding events listeners
+	return {
+		start: start,
+		changePage: changePage
+	}
+
+	// start application point
 
 	function start() {
-		app.shell.ini();
-		_configApp();
-		_bindListeners();
-		_markMenuItem(state.currentAnchor.page);
+
+		this.start = function() {
+			// get saved user info
+			_updateUserInfo();
+			
+			// configure application routes
+			_configApp(_state.acl[_state.selectedRole]);
+
+			// observe main app events
+			_bindListeners();
+
+			// auth check
+			if(!_state.currentUserInfo) {
+				changePage('auth');
+			} else {
+				
+				if(!_state.selectedRole) {
+					_changeUserRole();
+				} else {
+					changePage($.uriAnchor.makeAnchorMap().page || 'shell');
+				}					
+			}
+		}
+
+		_loadRoutes(this.start);
+		
 	}
 
-	function _configApp() {
 
+	function changePage(newPage, query, saveQuery) {
+
+		if(!newPage) return null;
+
+		var anchor   	 = $.uriAnchor.makeAnchorMap(),
+			currPage 	 = anchor.page;
+
+		if(query || saveQuery == "true") {
+			if(query) {
+				anchor.query = query;
+			}			
+		} else {
+			delete anchor.query;
+		}
+	
+		if(currPage === newPage) {
+			$(window).trigger('hashchange');
+		} else {
+			anchor.page = newPage;
+			$.uriAnchor.setAnchor(anchor);
+		}
+
+	}
+
+
+	// configure app 
+	// set avail pages
+
+	function _configApp(acl) {
 		$.uriAnchor.configModule({
 			schema_map : {
-				page: { step1: true, step2: true, step3: true, step4: true, step5: true }
+				page: acl,
+				query: true
 			}
 		});
-
-        new $.Zebra_Tooltips($('.app-shell-progress-step-information'), {
-        	'background_color': '#26C6DA',
-        	'color':            '#FFF',
-    		'position':         'center',
-    		'animation_speed':   180,
-    		'animation_offset':  10,
-    		'default_position':  'below'});
-
-
-        // Доделать (перебрасывает на page=step1)
-        // var newAnchor = $.uriAnchor.makeAnchorMap();
-
-        // if(newAnchor.page) {
-        // 	_updateAnchor(newAnchor);
-        // } else {
-       	// 	_updateAnchor(state.currentAnchor);
-        // }
-
-        _updateAnchor(state.currentAnchor);
-
-
 	}
 
+	// observe main app events
 	function _bindListeners() {
 
-		$(window).bind('hashchange',   _onHashChange)
-				 .bind('moduleLoaded', _onModuleLoad);
+		$(window)
+			.on('hashchange', 	          _onHashChange)
+			.on('startModuleLoad',        _onStartModuleLoad)
+			.on('moduleIsLoad',           _onModuleIsLoad)
+			.on('loginSuccess',           _onLoginSuccess)
+			.on('dislogin', 	          _onDislogin)
+			.on('roleIsChanged',          _onRoleIsChanged);		
 
-	}
-
-	// events handlers
-
-	function _onHashChange() {
-
-		var newAnchor = $.uriAnchor.makeAnchorMap(),
-			oldAnchor = state.currentAnchor;
-
-		if(_updateAnchor(newAnchor)) {
-			
-			_applyChanges(newAnchor, oldAnchor);
-			_markMenuItem();
-
-		}
+		// firefox don't support focusin/focusout events;
+		$(document)
+			.on('click', '.tooltip', _onInputClick)
+			.on('click', _onDocumentClick)
+			.on('click', '.next-btn, .prev-btn', _onNextButtonClick);
 	
 	}
 
-	function _onModuleLoad(event, moduleId) {
+	// event handlers block
+
+	function _onNextButtonClick(event) {
+		var $et = $(event.target);
+		app.changePage($et.attr('data-page'), null, $et.attr('data-save-query'));
+	}	
+
+	function _onRoleIsChanged(event) {
+
+		_updateUserInfo();
+		_configApp(_state.acl[_state.selectedRole]);
+		changePage('shell');
+
+	}	
+
+	function _onHashChange(event) {
+
+		var newAnchor = $.uriAnchor.makeAnchorMap(),
+			oldAnchor = _state.currentAnchor;
+
+		if(_updateAnchor(newAnchor)) _applyChanges(newAnchor, oldAnchor);
+	
+	}
+
+	function _onStartModuleLoad(event, data) {
 		
-	 	var currentModule = $.uriAnchor.makeAnchorMap().page;
-	 	
-	 	if(moduleId == currentModule) {
-	 		_hidePreloader();
-	 		_animateMainBlock();
-	 	}
+		// TO-DO save new module
+		_state.jQmap.ov.stop().fadeIn(250);
+		if(data) _state.moduleHistory.push(data);
+		
+	}
+
+	function _onModuleIsLoad(event) {
+
+		// TO-DO
+		// on error try load module
+		// on double error history back and toogle message
+		_state.jQmap.ov.stop().fadeOut(50);
+		_animatePage(300);
+	}
+
+	function _onLoginSuccess(event) {
+		
+		_updateUserInfo();
+		_changeUserRole();		
+		
+	}
+
+	function _onDislogin() {
+		localStorage.clear();
+		_state.selectedRole = null;
+		_state.currentUserInfo = {};
+	}
+
+	function _onInputClick(event) {
+
+		event.stopPropagation();
+		
+		var $ev = $(event.target).attr('data-target'),
+			$span = $('span.' + $ev);
+
+		$('.showed_tooltip')
+			.removeClass('showed_tooltip')
+			.fadeOut(0);
+
+		$span
+			.addClass('showed_tooltip')
+			.stop()
+			.fadeIn(200)
+			.css('display', 'inline-block');	
 
 	}
 
-	//  some functions
+	function _onDocumentClick() {
+
+		$('.showed_tooltip')
+			.removeClass('showed_tooltip')
+			.fadeOut(0);
+			
+	}
+
+	// util functions 
+
+	function _loadRoutes(callback) {
+
+		$.get('tmpl/app.menu.json')
+			.done(function(response) {
+				app.data.setToStorage('routeMap', response);
+				callback();
+			});
+
+	}
+
+
+	function _changeUserRole() {
+		if(_state.currentUserInfo.roles.length > 1) {
+			changePage('auth.role');
+		} else {
+			_state.selectedRole = _state.currentUserInfo.roles[0].id;
+			app.data.setToStorage('selectedRole', _state.selectedRole);
+			_configApp(_state.acl[_state.selectedRole]);
+			changePage('shell');
+		}
+	}
+
+	function _animatePage(duration) {
+		_state.jQmap.mainBlock
+						.css({
+								'opacity'  : '0.8',
+								'marginTop': '-10px'
+							})
+						.animate({ 
+									'opacity'  : '1',
+									'marginTop': '0px' }, duration || 300);
+	}
+
+	function _updateAnchor(newAnchor) {
+
+		try {
+			$.uriAnchor.setAnchor(newAnchor);
+			_state.currentAnchor = newAnchor;
+		} catch(e) {
+			$.uriAnchor.setAnchor(_state.currentAnchor);
+			return false;
+		}
+		return true;
+	}
 
 	function _applyChanges(newObj, oldObj) {
 
 		for(var key in newObj) {
 			if(!~key.indexOf('_s_')) {
 				if(!oldObj[key] || newObj[key] != oldObj[key]) {
-					state.actionList[key](newObj[key]);
+					if(_state.actionList[key]) {
+						_state.actionList[key](newObj[key]);	
+					}					
 				}	
 			}
 		}
 	
 	}
 
-	function _updateAnchor(newAnchor) {
-		try {
-			$.uriAnchor.setAnchor(newAnchor);
-			state.currentAnchor = newAnchor;
-		} catch(e) {
-			$.uriAnchor.setAnchor(state.currentAnchor);
-			return false;
-		}
-		return true;
-	}
+	function _openPage(moduleName) {
 
-	function _hidePreloader() {
-		state.jqueryMap.$preloader.hide(0);
-	}
-
-	function _animateMainBlock() {
-		state.jqueryMap.$mainBlock
-						.css({'opacity'  : '0.8',
-							  'marginTop': '-10px'})
-						.animate({ 'opacity'  : '1',
-								   'marginTop': '0px' }, 300);
-	}
-
-	function _showPage(page) {
-
-		state.jqueryMap.$mainBlock.children().hide();
+		var withOutMenu = ['auth', 'auth.role'];
 		
-		try {
-			$(app[page].mainSelector).show();
-			_animateMainBlock();
-		} catch(e) {
-
+		if(withOutMenu.indexOf(moduleName) == -1) {
+			app.menu.open(moduleName);
+			_state.jQmap.container.fadeIn(0);
+		} else {
+			_state.jQmap.container.fadeOut(0);
 		}
 
-	}
+		var histLen = _state.moduleHistory.length - 1,
+			moduleInstance = _namespace(_state.moduleHistory[histLen]);
 
-	// переписать
-	function _markMenuItem(item) {
-		
-		var numberStep = +(state.currentAnchor.page.replace(/\D/g, '')) - 1;
-
-		$(".app-shell-progress-ul li").removeClass("selected-step");
-		$(".app-shell-progress-ul li:eq("+numberStep+")").addClass("selected-step");
+		if(moduleInstance) {
+			moduleInstance.close();
+		}
 	
+		$(window).trigger('startModuleLoad', [moduleName]);
+		_namespace(moduleName).open();
+
 	}
+
+	function _updateUserInfo() {
+		_state.currentUserInfo = app.data.getByStorage('userInfo');
+		_state.selectedRole    = app.data.getByStorage('selectedRole') || 0;
+	}
+
+	function _namespace(str) {
+
+		if(!str) return null;
+
+		var parentName = 'app',
+				parent = app,
+			    chunks = str.split('.');
+
+		if(chunks[0].toLowerCase() == parentName) chunks = chunks.slice(1);
+
+		for(var i = 0; i < chunks.length; i++) {
+			if(parent[chunks[i]]) {
+				parent = parent[chunks[i]];
+			} else {
+				return null;
+			}
+		}
+
+		return parent;
+
+	}
+
 
 })(jQuery);

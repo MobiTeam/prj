@@ -1,0 +1,11 @@
+﻿<div id="app-authorization-select-role-box">
+	<h2>Выберите роль под которой Вам необходимо авторизоваться в системе</h2>
+
+	{{ #roles }}
+	
+		<button class="app-authorization-select-role-btn" value="{{ id }}">{{ desc }}</button>
+
+	{{ /roles }}
+	
+	<a class="app-authorization-select-role-return" href="index.html#!page=auth">Вернуться назад</a>
+</div>

@@ -1,0 +1,22 @@
+<ul>
+	<li>
+		<a class="menu_item" href="shell">
+			<span class="app_vertical_menu_description">Главная страница</span><br>
+			<span class="app_vertical_menu_information">Перейти на главную страницу</span>	
+		</a>
+	</li>	
+	{{#items}}
+	<li>
+		<a class="menu_item" href="{{ page }}" data-save-query="{{ saveQuery }}">
+			<span class="app_vertical_menu_description">{{ title }}</span><br>
+			<span class="app_vertical_menu_information">{{ desc }}</span>
+		</a>
+	</li>
+	{{/items}}
+	<li>
+		<a class="menu_item" href="auth">
+			<span class="app_vertical_menu_description">Выход</span><br>
+			<span class="app_vertical_menu_information">Сменить пользователя</span>
+		</a>
+	</li>
+</ul>

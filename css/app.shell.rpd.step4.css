@@ -1,0 +1,21 @@
+#app-shell-step-4-table {
+	margin-top: 10px;
+}
+
+.final-table>thead {
+	background-color: #336aba;
+}
+
+.final-table>thead>tr>td {
+	color:white;
+	padding: 5px;
+}
+
+.final-table>tbody>tr>td {
+	border-right: 1px solid #e1e1e1;
+	padding: 5px;
+}
+
+.final-table>tbody>tr:nth-child(odd) {
+	background-color: #f3f3f3;
+}

@@ -1,0 +1,89 @@
+{
+    "2": {
+        "shell": [
+            {
+                "title": "Разработка ООП",
+                "desc" : "на текущий год",
+                "page" : "shell.oop",
+                "saveQuery": "false"
+            }
+        ],
+        "shell.oop": [
+            {
+                "title": "Разработка ООП",
+                "desc" : "на текущий год",
+                "page" : "shell.oop",
+                "saveQuery": "false"
+            }  
+        ], 
+        "shell.oop.create": [
+            {
+                "title":"Сведения о направлении",
+                "desc" :"Код, наименование подготовки",
+                "page" :"shell.oop.create.step1",
+                "saveQuery": "true"
+            },
+            {
+                "title":"Цель и сроки освоения",
+                "desc" :"направления подготовки",
+                "page" :"shell.oop.create.step2",
+                "saveQuery": "true"
+            },
+            {
+                "title":"Область и объекты",
+                "desc" :"профессиональной деятельности",
+                "page" :"shell.oop.create.step3",
+                "saveQuery": "true"
+            },
+            {
+                "title":"Виды и задачи",
+                "desc" :"профессиональной деятельности",
+                "page" :"shell.oop.create.step4",
+                "saveQuery": "true"
+            },
+            {
+                "title":"Сведения о практиках",
+                "desc" :"направления подготовки",
+                "page" :"shell.oop.create.step5",
+                "saveQuery": "true"
+            },
+            {
+                "title":"Основные сведения о ППС",
+                "desc" :"привлеченному к преподаванию",
+                "page" :"shell.oop.create.step6",
+                "saveQuery": "true"
+            },
+            {
+                "title":"Численность педагогических работников",
+                "desc" :"по типу занятости",
+                "page" :"shell.oop.create.step7",
+                "saveQuery": "true"
+            },
+            {
+                "title":"Основные сведения о ППС",
+                "desc" :"по степеням",
+                "page" :"shell.oop.create.step8",
+                "saveQuery": "true"
+            },
+            {
+                "title":"Основные сведения о ППС",
+                "desc" :"по категориям",
+                "page" :"shell.oop.create.step9",
+                "saveQuery": "true"
+            },
+            {
+                "title":"Основные сведения о ППС",
+                "desc" :"по профилю образования",
+                "page" :"shell.oop.create.step10",
+                "saveQuery": "true"
+            },
+            {
+                "title":"Количество экземпляров различной литературы",
+                "desc" :"по категориям",
+                "page" :"shell.oop.create.step11",
+                "saveQuery": "true"
+            }
+        ]
+    }
+}
+

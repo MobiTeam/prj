@@ -1,0 +1,56 @@
+#app-authorization-select-role {
+	display: none;
+	padding: 120px 0px;
+}
+
+#app-authorization-select-role-box{
+	left: 50%;
+	margin-left: -300px;
+	width: 600px;
+	height:600px;
+	border: 1px solid #9E9E9E;
+	position: relative;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	background-color: white;
+}
+
+#app-authorization-select-role-box h2{
+	background-color: #336aba;
+	color: #fff;
+	text-align: center;
+	font-size: 28px;
+	padding: 20px 26px;
+	margin: 0px;
+}
+
+.app-authorization-select-role-btn{
+    margin: 10px; 
+	font-size: 18px;
+    background-color: white;
+    color: black;
+    border: 2px solid #336aba;
+    padding: 20px 180px;
+    -webkit-transition-duration: 0.6s;
+    transition-duration: 0.6s;
+    cursor: pointer;
+    min-width: 575px;
+    max-width: 575px;
+
+}
+
+.app-authorization-select-role-btn:hover {
+    background-color: #336aba;
+    color: white;
+}
+
+.app-authorization-select-role-return{
+	margin: 10px 205px;
+	background-color: #336aba;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
