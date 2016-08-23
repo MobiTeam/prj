@@ -62,6 +62,12 @@
 	padding: 40px;
 }
 
+.app-shell-separator{
+    border-bottom: 1px solid #756363;
+    margin: 5px 0;
+    width: 500px;
+}
+
 
 
 

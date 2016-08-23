@@ -12,9 +12,7 @@ var app = (function($) {
 		},
 
 		// current anchor
-		currentAnchor : {
-
-		},
+		currentAnchor : {},
 
 		moduleHistory : [],
 
@@ -24,17 +22,15 @@ var app = (function($) {
 
 		// information about auth user
 		currentUserInfo: {
-			// TO-DO my be array
-			// foreach, extends roles, after that append
-			roles: [{"id":1, "name":"ADMIN", "desc": "Администратор"}]
+			roles: []
 		},
 
 		selectedRole: null,
 
 		// roles ACL
 		// describes what pages avail to open		
-
-		// TO-DO remove from app.menu.json
+		
+		// TO-DO create default ACL role
 		acl : {
 			// dislogin
 			'0': {
@@ -44,42 +40,27 @@ var app = (function($) {
 			// admin
 			'1': {
 				'auth': true,
-				'auth.role': true,
-				'shell': true
+				'auth.role': true
 			},
-			// head department
+			//  
 			'2': {
 				'auth': true,
-				'auth.role': true,
-				'shell': true,
-				'shell.oop': true,
-				'shell.oop.create': true,
-				'shell.oop.create.step1': true,
-				'shell.oop.create.step2': true,
-				'shell.oop.create.step3': true,
-				'shell.oop.create.step4': true,
-				'shell.oop.create.step5': true,
-				'shell.oop.create.step6': true,
-				'shell.oop.create.step7': true,
-				'shell.oop.create.step8': true,
-				'shell.oop.create.step9': true,
-				'shell.oop.create.step10': true,
-				'shell.oop.create.step11': true
+				'auth.role': true
 			},
-			// director
+			//
 			'3': {
 				'auth': true,
-				'auth.role': true,
-				'shell': true,
-				'shell.oop.institute': true,
+				'auth.role': true
 			},
-			// teach department
+			//
 			'4': {
-				'shell': true
+				'auth': true,
+				'auth.role': true
 			},
-			// teacher
+			//
 			'5': {
-				'shell': true
+				'auth': true,
+				'auth.role': true
 			}
 		}
 	
@@ -146,7 +127,6 @@ var app = (function($) {
 
 	}
 
-
 	// configure app 
 	// set avail pages
 
@@ -159,9 +139,9 @@ var app = (function($) {
 		});
 	}
 
-	// observe main app events
 	function _bindListeners() {
 
+		// observe main app events
 		$(window)
 			.on('hashchange', 	          _onHashChange)
 			.on('startModuleLoad',        _onStartModuleLoad)
@@ -175,6 +155,10 @@ var app = (function($) {
 			.on('click', '.tooltip', _onInputClick)
 			.on('click', _onDocumentClick)
 			.on('click', '.next-btn, .prev-btn', _onNextButtonClick);
+
+		// field validation	
+		$('.date_time_mask')
+			.mask('00.00.0000');
 	
 	}
 
@@ -236,8 +220,11 @@ var app = (function($) {
 
 		event.stopPropagation();
 		
-		var $ev = $(event.target).attr('data-target'),
-			$span = $('span.' + $ev);
+		var $evt = $(event.target),
+			$evTargetSelector = $evt.attr('data-target'),
+			$span = $evt.siblings('span.' + $evTargetSelector);
+
+		console.log($evTargetSelector);	
 
 		$('.showed_tooltip')
 			.removeClass('showed_tooltip')
@@ -265,12 +252,32 @@ var app = (function($) {
 
 		$.get('tmpl/app.menu.json')
 			.done(function(response) {
-				app.data.setToStorage('routeMap', response);
+				app.data.setToStorage('menuMap', response);
+				_translateMenuMapToRoutes(app.data.getByStorage('menuMap'));
 				callback();
 			});
 
 	}
 
+	function _translateMenuMapToRoutes(menuMap) {
+		var routeApp = {};
+
+		for(var role in menuMap) {
+			
+			routeApp[role] = _state.acl[role];
+			
+			for(var menuItems in menuMap[role]) {
+				routeApp[role][menuItems] = true;	 	
+				
+				for(var i = 0; i < menuMap[role][menuItems].length; i++) {
+					routeApp[role][menuMap[role][menuItems][i]['page']] = true;
+				}
+			}
+		} 
+
+		$.extend(_state.acl, routeApp);
+	
+	}
 
 	function _changeUserRole() {
 		if(_state.currentUserInfo.roles.length > 1) {
@@ -285,6 +292,7 @@ var app = (function($) {
 
 	function _animatePage(duration) {
 		_state.jQmap.mainBlock
+						.stop()
 						.css({
 								'opacity'  : '0.8',
 								'marginTop': '-10px'
@@ -323,7 +331,7 @@ var app = (function($) {
 	function _openPage(moduleName) {
 
 		var withOutMenu = ['auth', 'auth.role'];
-		
+
 		if(withOutMenu.indexOf(moduleName) == -1) {
 			app.menu.open(moduleName);
 			_state.jQmap.container.fadeIn(0);
@@ -340,7 +348,7 @@ var app = (function($) {
 	
 		$(window).trigger('startModuleLoad', [moduleName]);
 		_namespace(moduleName).open();
-
+		
 	}
 
 	function _updateUserInfo() {
@@ -369,6 +377,5 @@ var app = (function($) {
 		return parent;
 
 	}
-
 
 })(jQuery);

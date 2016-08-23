@@ -97,7 +97,12 @@ p {
 	background-color: #F5F5F5;
 }
 
-.disciplines-open-btn, .form-control-btn, .next-btn, .prev-btn {
+.disciplines-open-btn,
+.form-control-btn,
+.next-btn,
+.prev-btn,
+.form-control-btn-add,
+.form-control-btn-delete {
 	cursor: pointer;
 }
 
@@ -105,7 +110,10 @@ p {
 	border: none;
 }
 
-.next-btn:focus , .prev-btn:focus {
+.next-btn:focus ,
+.prev-btn:focus,
+.form-control-btn-add,
+.form-control-btn-delete {
 	outline: none;
 }
 
@@ -131,6 +139,44 @@ p {
     box-shadow: 3px 4px 6px 0 rgba(0,0,0,0.25);
     border-color: #4DD0E1;
 	background-color: #0D47A1;
+}
+
+.form-control-btn-add{
+	margin:10px;
+	background-color: #4CAF50;
+    border: none;
+    color: white;
+    display: block;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+.form-control-btn-add:hover{
+    transition: all 0.5s ease-out;
+    box-shadow: 3px 4px 6px 0 rgba(0,0,0,0.25);
+    border-color: #43A047;
+	background-color: #2E7D32;
+}
+
+
+.form-control-btn-delete{
+	background-color: #ef5350;
+    border: none;
+    color: white;
+    display: inline;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 11px 0 0 15px;
+    position: absolute;
+}
+.form-control-btn-delete:hover{
+    transition: all 0.5s ease-out;
+    box-shadow: 3px 4px 6px 0 rgba(0,0,0,0.25);
+    border-color: #b71c1c;
+	background-color: #c62828;
 }
 
 .form-control-label{
