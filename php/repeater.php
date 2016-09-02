@@ -1,15 +1,18 @@
 <?php 
 
-	// get query parameters
-	$queryPar = $_POST;
-
 	// get routes parameters
 	$_ROUTES = require_once('routes.php');
 
 	// authorisation example
 	// TO-DO: get data from request
-	$login  = 'V_Petrochenko';
-	$passwd = 'v_petrochenko';
+	$login  = 'a_gusakov';
+	$passwd = 'a_gusakov';
+
+	if(isset($_POST)) {
+		$that = $_POST['that'];
+	} else {
+
+	}
 
 	// configurate CURL connection
 	$headers = array();
@@ -17,9 +20,11 @@
 
 	// ini curl connection
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $_ROUTES['base'] . $_ROUTES['UserInfo']['url']);
+	curl_setopt($ch, CURLOPT_URL, $_ROUTES['base'] . $_ROUTES[$that]['url']);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
 
 	// exec request
 	$server_output = curl_exec ($ch);

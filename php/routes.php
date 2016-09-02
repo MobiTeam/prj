@@ -7,16 +7,16 @@
 	return [
 				'base' 	        => 'http://192.168.0.60:8080/rpd/api/',
 				'allUsersInfo' 	=> [
-									'url'    => 'users/getAll',
-									'method' => 'GET',
+									'url'    => 'users/getAll'									
 							 	],
 				'UserInfo'		=> [
-									'url'	 => 'users/getById/{{id}}',
-									'method' => 'GET',
+									'url'	 => 'users/getById/{{id}}'									
 								],
 				'UserLogin'		=> [
-									'url'	 => 'users/getByLogin',
-									'method' => 'GET',
+									'url'	 => 'users/getByLogin'									
+								],
+				'OopCreate'		=> [
+									'url'	 => 'oop/create'									
 								]			
 
 			]	

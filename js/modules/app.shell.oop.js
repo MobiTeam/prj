@@ -10,8 +10,23 @@ app.shell.oop = new Page({
 							.on('click', '[data-target="create-new-oop"]', _onCreateOopButtonClick)		
 
 						function _onCreateOopButtonClick(events) {
-							var year =$child.find('[data-target="oop-creation-year"]').val();	
-							app.changePage('shell.oop.create', 'year=' + year);
+							
+							var year = $child.find('[data-target="oop-creation-year"]').val(),
+								uId  = app.data.getByStorage('userInfo').id;
+							
+							app.data.execute({
+								type    : 'POST',
+								data    : {that: 'OopCreate', ownerId: uId, year: year + '-01-01'},
+								callback: function(response) {
+									if(response.errCode) {
+										// throw error
+									} else {
+										app.model.oop.set(response);
+										app.changePage('shell.oop.create', 'year=' + year);
+									}									
+								}
+							});
+
 						}		
 
 					}

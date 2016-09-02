@@ -56,8 +56,8 @@
 
 		// authorisation example
 		// TO-DO: get data from request
-		$login  = 'V_Petrochenko';
-		$passwd = 'v_petrochenko';
+		$login  = 'a_gusakov';
+		$passwd = 'a_gusakov';
 
 		// configurate CURL connection
 		$headers = array();

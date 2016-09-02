@@ -75,8 +75,12 @@
 				_dropText('#app-authorization-box__message', response.text, response.code == "200" ? 'green' : 'red');
 				
 				if(response.code == "200") {
-					app.data.setToStorage('userInfo', response['userinfo']);
-					$(window).trigger('loginSuccess');
+					if(response.userinfo.status) {
+						_dropText('#app-authorization-box__message', 'Вы не имеете прав, для работы с системой.');
+					} else {
+						app.data.setToStorage('userInfo', response['userinfo']);
+						$(window).trigger('loginSuccess');
+					}										
 				}
 			},
 			error: function() {

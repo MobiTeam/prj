@@ -239,6 +239,10 @@ p {
 	box-shadow: 3px 4px 6px 0 rgba(0,0,0,0.25);	
 }
 
+.form-text{
+	font-style: italic;
+}
+
 .overlay {
 	height: 100%;
 	width: 100%;
