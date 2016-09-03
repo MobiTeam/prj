@@ -9,27 +9,62 @@
 </head>
 
 <body>
-	<h2>Требования к подготовки обучающегося</h2>
-	<div id="app-shell-rpd-mine-create-step5-wrapper-reviewer">	
-		<label for="app-shell-rpd-mine-create-step5-name" class="form-control-label">Ф.И.О. рецензента рабочей программы</label>
-			<input type="text" data-target="app-shell-rpd-mine-create-step5-name"  class="form-control-input tooltip" placeholder="Иванов Иван Иванович">
-			<span class="app-shell-rpd-mine-create-step5-name form-control-input-tooltip">
-				Например: Иванов Иван Иванович
+	<h2>Требования к подготовке обучающегося</h2>
+		
+		<label for="app-shell-rpd-mine-create-step5-prequal-stud" class="form-control-label">Требования к предварительной подготовке обучающегося:</label>
+
+			<textarea data-target="app-shell-rpd-mine-create-step5-prequal-stud" class="form-control-textarea tooltip" placeholder=""></textarea>
+
+			<span class="app-shell-rpd-mine-create-step5-prequal-stud form-control-input-tooltip">
+				Требования к предварительной подготовке обучающегося
 			</span>
 
-		<label for="app-shell-rpd-mine-create-step5-degree" class="form-control-label">Ученая степень рецензента рабочей программы:</label>
-			<input type="text" data-target="app-shell-rpd-mine-create-step5-degree"  class="form-control-input tooltip" placeholder="Кандидат технических наук">
-			<span class="app-shell-rpd-mine-create-step5-degree form-control-input-tooltip">
-				Например: Кандидат технических наук
-			</span>
+	<div id="app-shell-rpd-mine-create-step5-wrapper-prequal">
 
-		<label for="app-shell-rpd-mine-create-step5-status" class="form-control-label">Ученое звание рецензента рабочей программы:</label>	
-			<input type="text" data-target="app-shell-rpd-mine-create-step5-status" class="form-control-input tooltip" placeholder="Доцент">
-			<span class="app-shell-rpd-mine-create-step5-status form-control-input-tooltip">
-				Например: Доцент
-			</span>
+			<label for="app-shell-rpd-mine-create-step5-prequal-comment" class="form-control-label">Пояснение или комментарий (необязательное поле)</label>
+
+				<input type="text" data-target="app-shell-rpd-mine-create-step5-prequal-comment"  class="form-control-input tooltip" placeholder="">
+
+				<span class="app-shell-rpd-mine-create-step5-prequal-comment form-control-input-tooltip">
+					Пояснение или комментарий к предварительной подготовке обучающегося
+				</span>
 	</div>
-	<input id="app-shell-rpd-mine-create-step5-addReviewer" type="button" class="form-control-btn-add" value="Добавить рецензента РПД"/>	
+	<input id="app-shell-rpd-mine-create-step5-prequal" type="button" class="form-control-btn-add" value="Добавить пояснение"/>
+
+	<div class="app-shell-separate-block"></div>
+
+	<div id="app-shell-rpd-mine-create-step5-wrapper-previous">
+
+			<label for="app-shell-rpd-mine-create-step5-previous-discipline" class="form-control-label">Дисциплины предшествующие:</label>
+
+				<input type="text" data-target="app-shell-rpd-mine-create-step5-previous-discipline"  class="form-control-input tooltip" placeholder="">
+
+				<span class="app-shell-rpd-mine-create-step5-previous-discipline form-control-input-tooltip">
+					Например: Высшая математика
+				</span>
+
+	</div>
+
+	<input id="app-shell-rpd-mine-create-step5-addprevious" type="button" class="form-control-btn-add" value="Добавить предшествующие дисциплины"/>
+
+	<div class="app-shell-separate-block"></div>
+
+	<div id="app-shell-rpd-mine-create-step5-wrapper-next">
+
+			<label for="app-shell-rpd-mine-create-step5-next-discipline" class="form-control-label">Дисциплины следующие:</label>
+
+				<input type="text" data-target="app-shell-rpd-mine-create-step5-next-discipline"  class="form-control-input tooltip" placeholder="">
+	
+				<span class="app-shell-rpd-mine-create-step5-next-discipline form-control-input-tooltip">
+					Например: Высшая математика
+				</span>
+
+	</div>
+
+	<input id="app-shell-rpd-mine-create-step5-addnext" type="button" class="form-control-btn-add" value="Добавить следующие дисциплины"/>
+	
+	<div class="app-shell-separate-block"></div>
+
 	<input class="prev-btn" type="button" data-page="shell.rpd.mine.create.step4" data-save-query="true" value="Назад" />
 	<input class="next-btn" type="button" data-page="shell.rpd.mine.create.step6" data-save-query="true" value="Далее" />
 </body>

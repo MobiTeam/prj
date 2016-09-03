@@ -2,28 +2,32 @@ app.data = (function($) {
 
 	'use strict';
 
-	return {
-
-		getByStorage: getByStorage,
-		setToStorage: setToStorage,
-		execute: execute
-
-	}
-
-	function getByStorage(that) {
+	var getByStorage = function(that) {
 
 		if(!that || !localStorage[that]) return null;
 
-		try {
-			var data = JSON.parse(localStorage[that]);
-			return data;
-		} catch(e) {
-			return null;
+		if(_buffer[that]) {
+ 			return _buffer[that];
+		} else {
+			try {
+				var data = JSON.parse(localStorage[that]);
+				return data;
+			} catch(e) {
+				return null;
+			}
 		}
 
 	}
 
-	function setToStorage(that, data) {
+	_buffer = (function(buff) {
+					for(var key in localStorage) {
+						buff[key] = getByStorage(key);
+					}
+					return buff;
+				})({});
+
+
+	var setToStorage = function(that, data) {
 
 		if(!that || !data) return false;
 
@@ -39,6 +43,8 @@ app.data = (function($) {
 			return false;
 		}
 
+		_buffer[that] = data;
+
 	}
 
 	// @param
@@ -47,7 +53,7 @@ app.data = (function($) {
  	//  data[object]      - query data to response
 	//	callback[function] - function that should execute after success request
 
-	function execute(param) {
+	var execute = function(param) {
 
 		if(!param) return false;
 
@@ -75,6 +81,12 @@ app.data = (function($) {
 
 		return Object.prototype.toString.call(data) === '[object Object]';
 
+	}
+
+	return {
+		getByStorage : getByStorage,
+		setToStorage : setToStorage,
+		execute      : execute
 	}
 	
 })(jQuery);

@@ -11,19 +11,35 @@
 <body>
 	<h2>Справочная информация по данной ООП и дисциплине</h2>
 
-		<h3>Наименование ООП</h3>
-			<p class="form-text">Информатика и вычислительная техника</p>
+		<label for="app-shell-rpd-mine-create-step1-discipline" class="form-control-label">Наименование дисциплины</label>
+			<input type="text" data-target="app-shell-rpd-mine-create-step1-discipline"  class="form-control-input tooltip" placeholder="Программирование">
+			<span class="app-shell-rpd-mine-create-step2-name form-control-input-tooltip">
+				Например: Программирование
+			</span>
 
-		<h3>Год набора ООП</h3>
-			<p class="form-text">2015-2016</p>
 
+		<label for="app-shell-rpd-mine-create-step1-discipline" class="form-control-label">Год набора</label>
+			<input type="text" data-target="app-shell-rpd-mine-create-step1-discipline"  class="form-control-input tooltip" placeholder="2015">
+			<span class="app-shell-rpd-mine-create-step2-name form-control-input-tooltip">
+				Например: 2015
+			</span>	
 
-		<h3>Характеристики дисциплины согласно учебного плана</h3>
-			<p class="form-text">Lorem ipsum Non elit magna consectetur qui et dolor elit anim anim aliqua sint mollit deserunt do dolor laborum. Lorem ipsum Consequat ex ut Ut qui fugiat elit anim velit consequat enim proident ut aliquip qui reprehenderit Ut laborum mollit aliqua eiusmod irure sit veniam dolore cillum nostrud magna mollit dolor ut tempor Ut.</p>
-
-		<h3>Заведующий выпускающей кафедры и его контакты </h3>
-			<p class="form-text">Ф.И.О. : Сидородов Иван Семенович</p>
-			<p class="form-text">Телефон : +7912999999</p>
+		<table class="app-shell-rpd-step1-table">
+			<thead>
+				<th>Всего часов на дисциплину</th>
+				<th>Часов на лекции</th>
+				<th>Часов на практику</th>
+				<th>Часов на лабораторные работы</th>
+				<th>Вид промежуточного контроля</th>
+			</thead>
+			<tr>
+				<td>500</td>
+				<td>200</td>
+				<td>100</td>
+				<td>200</td>
+				<td>Экзамен</td>
+			</tr>
+		</table>
 
 	<input class="next-btn" type="button" data-page="shell.rpd.mine.create.step2" data-save-query="true" value="Далее" />
 </body>

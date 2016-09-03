@@ -154,15 +154,20 @@ var app = (function($) {
 		$(document)
 			.on('click', '.tooltip', _onInputClick)
 			.on('click', _onDocumentClick)
-			.on('click', '.next-btn, .prev-btn', _onNextButtonClick);
+			.on('click', '.next-btn, .prev-btn', _onNextButtonClick)
+			.on('keypress', '[data-bind]', _onDatabindInputsKeypress)
 
 		// field validation	
 		$('.date_time_mask')
-			.mask('00.00.0000');
+			.mask('0000-00-00');
 	
 	}
 
 	// event handlers block
+
+	function _onDatabindInputsKeypress() {
+		console.log(213);
+	}
 
 	function _onNextButtonClick(event) {
 		var $et = $(event.target);
@@ -223,8 +228,6 @@ var app = (function($) {
 		var $evt = $(event.target),
 			$evTargetSelector = $evt.attr('data-target'),
 			$span = $evt.siblings('span.' + $evTargetSelector);
-
-		console.log($evTargetSelector);	
 
 		$('.showed_tooltip')
 			.removeClass('showed_tooltip')

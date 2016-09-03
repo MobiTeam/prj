@@ -19,10 +19,15 @@ app.shell.oop = new Page({
 								data    : {that: 'OopCreate', ownerId: uId, year: year + '-01-01'},
 								callback: function(response) {
 									if(response.errCode) {
-										// throw error
+										throw new Error('Oop creation error');
 									} else {
-										app.model.oop.set(response);
-										app.changePage('shell.oop.create', 'year=' + year);
+										
+										var oop = new Oop({
+											data: response
+										});
+
+										app.data.setToStorage('Oop_' + response.id, response);
+										app.changePage('shell.oop.create', 'year=' + year + '&id=' + response.id);
 									}									
 								}
 							});

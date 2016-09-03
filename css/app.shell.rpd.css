@@ -1,0 +1,30 @@
+.app-shell-rpd-step1-table{
+	border: 1px solid #1976D2;
+	max-width: 600px;
+	text-align: center;
+	border-spacing: 0;
+}
+.app-shell-rpd-step1-table th{
+	padding: 10px 20px;
+	background: #1976D2;
+	font-weight: 500;
+	color:white;
+	border-left:1px solid white;
+} 
+
+.app-shell-rpd-step1-table td{
+	padding: 10px 20px;
+	background: white;
+	border-left:1px solid #1976D2;
+} 
+
+.app-shell-rpd-step1-table td:hover{
+	background: #EEEEEE;
+}
+
+.app-shell-separate-block{
+	box-shadow: 3px 13px 7px -12px #000000;
+	padding: 0 10px;
+	width: 500px;
+	border-bottom: 0.2px solid #90A4AE;
+} 

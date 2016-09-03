@@ -1,11 +1,10 @@
 /**
  * Creates instance of class Model
  *
- * @param {String}   par.parentId 	 	- element selector which will wrap page
- * @param {String}   par.childId 	    - element selector which will contain page
- * @param {String}   par.tempalateUrl   - a link to the basic template
- * @param {Function} par.handlers       - function to bind events handlers
- * @this {Model}
+ * @param {Object}   par.data 	 	- element selector which will wrap page
+ * @param {String}   par.url 	    - a url to server handler
+ * @param {Object}   par.behaviour  - functions extends basic model behaviour
+  * @this {Model}
  * @constructor
  */
 
@@ -13,19 +12,19 @@ function Model(par) {
 	if(!par) throw new Error('missing necessary arguments on Model constructor');
 	
 	this.data 	   = par.data || {};	
-	this.that 	   = par.that || throw new Error("Fabrics constructor requires determining the type");
 	this.url       = par.url || 'php/repeater.php';
  	this.behaviour = par.behaviour || null;
 	this.isPersist = false;		
 }
 
-Model.prototype.save = function(callback) {
+Model.prototype.do = function(query, callback) {
 	if(!this.isPersist) {
 		app.data.execute({
 			type    : 'POST',
-			data    : this.data,
+			data    : $.extend({type: this.basic + query}, this.data),
 			callback: function() {
 				this.isPersist = true;
+				callback && callback();
 			}
 		});
 	} 
