@@ -2,12 +2,28 @@ app.data = (function($) {
 
 	'use strict';
 
+	var _buffer = (function(buff) {
+					for(var key in localStorage) {
+						
+						var data = null;
+						
+						try {
+							data = JSON.parse(localStorage[key]);
+						} catch(e) { }
+						
+						buff[key] = data;
+					}
+					return buff;
+				})({});
+
+
 	var getByStorage = function(that) {
 
 		if(!that || !localStorage[that]) return null;
 
 		if(_buffer[that]) {
- 			return _buffer[that];
+			console.log('load data from buffer');
+			return _buffer[that];
 		} else {
 			try {
 				var data = JSON.parse(localStorage[that]);
@@ -18,14 +34,6 @@ app.data = (function($) {
 		}
 
 	}
-
-	_buffer = (function(buff) {
-					for(var key in localStorage) {
-						buff[key] = getByStorage(key);
-					}
-					return buff;
-				})({});
-
 
 	var setToStorage = function(that, data) {
 

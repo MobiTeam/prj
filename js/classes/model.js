@@ -4,6 +4,7 @@
  * @param {Object}   par.data 	 	- element selector which will wrap page
  * @param {String}   par.url 	    - a url to server handler
  * @param {Object}   par.behaviour  - functions extends basic model behaviour
+ * @param {String}   par.basic  	- model type
   * @this {Model}
  * @constructor
  */
@@ -14,6 +15,7 @@ function Model(par) {
 	this.data 	   = par.data || {};	
 	this.url       = par.url || 'php/repeater.php';
  	this.behaviour = par.behaviour || null;
+ 	this.basic 	   = par.basic || null;
 	this.isPersist = false;		
 }
 

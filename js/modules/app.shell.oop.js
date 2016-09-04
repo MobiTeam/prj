@@ -21,11 +21,6 @@ app.shell.oop = new Page({
 									if(response.errCode) {
 										throw new Error('Oop creation error');
 									} else {
-										
-										var oop = new Oop({
-											data: response
-										});
-
 										app.data.setToStorage('Oop_' + response.id, response);
 										app.changePage('shell.oop.create', 'year=' + year + '&id=' + response.id);
 									}									

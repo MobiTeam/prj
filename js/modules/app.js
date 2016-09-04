@@ -155,7 +155,7 @@ var app = (function($) {
 			.on('click', '.tooltip', _onInputClick)
 			.on('click', _onDocumentClick)
 			.on('click', '.next-btn, .prev-btn', _onNextButtonClick)
-			.on('keypress', '[data-bind]', _onDatabindInputsKeypress)
+			.on('input', '[data-bind]', _onDatabindInput);
 
 		// field validation	
 		$('.date_time_mask')
@@ -165,8 +165,20 @@ var app = (function($) {
 
 	// event handlers block
 
-	function _onDatabindInputsKeypress() {
-		console.log(213);
+	function _onDatabindInput(event) {
+		
+		var $et = $(event.target),
+			par = $.getQueryParameters($.uriAnchor.makeAnchorMap().query);
+			
+		var dataBindChunks = $et.attr('data-bind').split('.');
+
+		var that  = dataBindChunks[0],
+			field = dataBindChunks[1];
+
+		var dataModel = app.buffer[that + '_' + par.id];
+		dataModel.setValue(field, $et.val());
+		app.data.setToStorage(that + '_' + par.id, dataModel.get());
+	
 	}
 
 	function _onNextButtonClick(event) {
