@@ -1,18 +1,18 @@
 ﻿<h2>Численность педагогических работников по типу занятости</h2>
 	<label for="app-shell-oop-create-step7-count" class="form-control-label">Численность педагогических работников:</label>
-		<input type="number" data-target="app-shell-oop-create-step7-count" class="form-control-input tooltip" placeholder="">
+		<input value="{{ teacherEmployeeAmount }}" type="number" data-target="app-shell-oop-create-step7-count" data-bind="Oop.teacherEmployeeAmount" class="form-control-input tooltip" placeholder="">
 		<span class="app-shell-oop-create-step7-count form-control-input-tooltip">Необходимо указать численность педагогических работников. Например: 3</span>		
 
 	<label for="app-shell-oop-create-step7-wsovm" class="form-control-label">Численность штатных без совместителей:</label>
-		<input type="number" data-target="app-shell-oop-create-step7-local" class="form-control-input tooltip" placeholder="">
+		<input value="{{ notCombinationStateEmployeeAmount }}" type="number" data-target="app-shell-oop-create-step7-local" data-bind="Oop.notCombinationStateEmployeeAmount" class="form-control-input tooltip" placeholder="">
 		<span class="app-shell-oop-create-step7-local form-control-input-tooltip">Необходимо указать численность штатных работников без совместителей. Например: 4</span>
 
 	<label for="app-shell-oop-create-step7-vsovm" class="form-control-label">Численность внешних совместителей:</label>	
-		<input type="number" data-target="app-shell-oop-create-step7-university" class="form-control-input tooltip" placeholder="">
+		<input value="{{ outsideCombinationEmployeeAmount }}" type="number" data-target="app-shell-oop-create-step7-university" data-bind="Oop.outsideCombinationEmployeeAmount" class="form-control-input tooltip" placeholder="">
 		<span class="app-shell-oop-create-step7-university form-control-input-tooltip">Необходимо указать численность внешних совместителей. Например: 3</span>
 
 	<label for="app-shell-oop-create-step7-hour" class="form-control-label">Численность работающих по почасовке:</label>	
-		<input type="number" data-target="app-shell-oop-create-step7-profedu" class="form-control-input tooltip" placeholder="">	
+		<input value="{{ hourlyPaymentEmployeeAmount }}" type="number" data-target="app-shell-oop-create-step7-profedu" data-bind="Oop.hourlyPaymentEmployeeAmount" class="form-control-input tooltip" placeholder="">	
 		<span class="app-shell-oop-create-step7-profedu form-control-input-tooltip">Необходимо указать численность работников работающих по почасовку. Например: 2</span>
 	<br>
 	<input class="prev-btn" type="button" data-page="shell.oop.create.step6" data-save-query="true" value="Назад" />

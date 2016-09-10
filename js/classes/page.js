@@ -17,25 +17,47 @@ var Page = function(par) {
 			throw new Error('missing necessary arguments on Page constructor'); 
 
 	var $parent = $('#' + par.parentId),
-	 	$child; 
-	
+	 	$child,
+	 	template = '';
+
 	// public interface
-	this.close 	= close;
-	this.open 	= open;
+	this.close 	     = close;
+	this.open 	     = open;
+	this.getTemplate = getTemplate;
+	this.getChild 	 = getChild;
+
+	var _alreadyBinded = false;
 
 	// lazy definition pattern 
 	function open() {
 
 		_ini();
 		this.open = function() {
-			$child.fadeIn(0);
-			$(window).trigger('moduleIsLoad');
+			if(par.updateData) {
+				par.updateData(null, function() {
+					$child.fadeIn(0);
+					$(window)
+						.trigger('moduleIsLoad');
+					
+					if(!_alreadyBinded) {
+						par.handlers && par.handlers();
+						_alreadyBinded = true;
+					}
+				});
+			} else {
+				$child.fadeIn(0);
+				$(window)
+					.trigger('moduleIsLoad');
+				if(!_alreadyBinded) {
+					par.handlers && par.handlers();
+					_alreadyBinded = true;
+				}	
+			}
 		}
 
 		if(par.templateUrl) {
 			_loadTemplate(this.open);
 		} else {
-			par.handlers && par.handlers();
 			this.open();
 		}
 
@@ -46,14 +68,26 @@ var Page = function(par) {
 		$(window).trigger('moduleIsLoad');
 	}
 
+	function getTemplate() {
+		return template;
+	}	
+
+	function getChild() {
+		return $child;
+	}
+
 	// private util funcitons 
 	function _loadTemplate(callback) {
 
 		$.get(par.templateUrl)
 			.done(function(response) {
 				$child.html(response);
-				par.handlers && par.handlers();				
+				template = response;
 				callback();
+			})
+			.error(function() {
+				alert("При загрузке страницы произошла ошибка");
+				$(window).trigger('moduleIsLoad');
 			})
 
 	}

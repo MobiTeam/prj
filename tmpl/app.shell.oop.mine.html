@@ -1,0 +1,24 @@
+<h2>Созданные основные образовательные программы</h2>
+
+<table id="app-shell-oop-mine-table">
+	<thead>
+		<tr>
+			<th width="500px">Наименование ООП</th>
+			<th width="150px">Год поступления</th>
+			<th width="150px">Код направления</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>		
+		<!-- {{ #items }} -->
+			<tr>
+				<td>{{ trainingDirectionalName }}</td>
+				<td>{{ year }}</td>
+				<td>{{ code }}</td>
+				<td><input type="button" class="form-control-btn-add" data-edit="{{ id }}" value="Редактировать" /></td>
+				<td><input type="button" class="form-control-btn-delete" data-delete="{{ id }}" value="Удалить" /></td>
+			</tr>
+		<!-- {{ /items }}		 -->
+	</tbody>
+</table>

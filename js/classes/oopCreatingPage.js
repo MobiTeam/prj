@@ -1,40 +1,49 @@
 function OopCreatingPage(parameters) {
 
-	var defaultHandlers = parameters.handlers;
+	var defaultHandlers = parameters.handlers,
+		self = this;
 
-	parameters.handlers = function() {
+	parameters.updateData = function(template, cb) {
+
+		function _insertData() {
+			var $baseEl  = self.getChild(),
+				template = self.getTemplate();
+
+			$baseEl.html(Mustache.to_html(template, app.buffer['Oop_' + par.id].get()));
+		}	
 
 		var par = $.getQueryParameters($.uriAnchor.makeAnchorMap().query);
 
 		if(!app.buffer['Oop_' + par.id]) {
+			// если ООП не сохранено в buffer, то загружать с сервера по ID
+			app.data.execute({
+				type     : 'POST',
+				data     : {that: 'OopGet', oopId: par.id},
+				callback : function(response) {
+					if(response.errCode) {
+						throw new Error('Oop creation error');
+					} else {
+						app.data.setToStorage('Oop_' + response.id, response);
+					}	
+					
+					app.buffer['Oop_' + par.id] = new Model({
+						basic: 'Oop',
+						data : response
+					})
 
-			var uId  = app.data.getByStorage('userInfo').id;
-
-			// app.data.execute({
-			// 	type     : 'POST',
-			// 	data     : {that: 'OopCreate', ownerId: uId, id: 310},
-			// 	callback : function(response) {
-			// 						if(response.errCode) {
-			// 							throw new Error('Oop creation error');
-			// 						} else {
-			// 							app.data.setToStorage('Oop_' + response.id, response);
-			// 							app.changePage('shell.oop.create', 'year=' + year + '&id=' + response.id);
-			// 						}	
-			// 		console.log(response);
-			// 		defaultHandlers();
-			// app.buffer['Oop_' + par.id] = new Model({
-			// 	basic: 'Oop',
-			// 	data : {}
-			// })
-			// 	}
-			// }) 
+					_insertData();	
+					cb && cb();				
+				}
+			}) 
 			
+		} else {
+			_insertData();
+			cb && cb();						
 		}
-
-		defaultHandlers();
-
 	}
 
 	Page.apply(this, arguments);
 
 }
+
+OopCreatingPage = Object.setPrototypeOf(OopCreatingPage, Page);

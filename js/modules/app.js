@@ -166,7 +166,7 @@ var app = (function($) {
 	// event handlers block
 
 	function _onDatabindInput(event) {
-		
+
 		var $et = $(event.target),
 			par = $.getQueryParameters($.uriAnchor.makeAnchorMap().query);
 			
@@ -176,9 +176,20 @@ var app = (function($) {
 			field = dataBindChunks[1];
 
 		var dataModel = app.buffer[that + '_' + par.id];
-		dataModel.setValue(field, $et.val());
-		app.data.setToStorage(that + '_' + par.id, dataModel.get());
-	
+
+		var data = dataModel.get();
+
+		delete data['owner'];
+		delete data['department'];
+		delete data['fnrec'];
+		delete data['practice'];
+		delete data['contracts'];
+		delete data['disciplines'];
+
+		data[field] = $et.val();
+		dataModel.set(data);
+		app.buffer[that + '_' + par.id] = dataModel;
+		dataModel.do('Save');
 	}
 
 	function _onNextButtonClick(event) {
@@ -298,10 +309,15 @@ var app = (function($) {
 		if(_state.currentUserInfo.roles.length > 1) {
 			changePage('auth.role');
 		} else {
-			_state.selectedRole = _state.currentUserInfo.roles[0].id;
-			app.data.setToStorage('selectedRole', _state.selectedRole);
-			_configApp(_state.acl[_state.selectedRole]);
-			changePage('shell');
+			if(!_state.currentUserInfo.roles[0]) {
+				alert('Вам не назначена роль в системе.');
+				changePage('auth');
+			} else {
+				_state.selectedRole = _state.currentUserInfo.roles[0].id;
+				app.data.setToStorage('selectedRole', _state.selectedRole);
+				_configApp(_state.acl[_state.selectedRole]);
+				changePage('shell');
+			}			
 		}
 	}
 

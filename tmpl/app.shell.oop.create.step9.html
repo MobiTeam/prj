@@ -1,18 +1,18 @@
 ﻿<h2>Численность штатных работников по квалификациям</h2>
-	<label for="app-shell-oop-create-step9-high" class="form-control-label">Численность штатных  с высшей квалификационной категорией:</label>
-		<input type="number" data-target="app-shell-oop-create-step9-high" class="form-control-input tooltip" placeholder="">
+	<label for="app-shell-oop-create-step9-high" class="form-control-label">Численность штатных с высшей квалификационной категорией:</label>
+		<input value="{{ hightCategoryEmployeeAmount }}" type="number" data-target="app-shell-oop-create-step9-high" data-bind="Oop.hightCategoryEmployeeAmount" class="form-control-input tooltip" placeholder="">
 		<span class="app-shell-oop-create-step9-high form-control-input-tooltip">Необходимо указать численность штатных преподавателей с высшей квалификационной категорией. Например: 2</span>		
 
 	<label for="app-shell-oop-create-step9-first" class="form-control-label">Численность штатных с первой категорией:</label>
-		<input type="number" data-target="app-shell-oop-create-step9-first" class="form-control-input tooltip" placeholder="">
+		<input value="{{ firstCategoryEmployeeAmount }}" type="number" data-target="app-shell-oop-create-step9-first" data-bind="Oop.firstCategoryEmployeeAmount" class="form-control-input tooltip" placeholder="">
 		<span class="app-shell-oop-create-step9-first form-control-input-tooltip">Необходимо указать численность штатных преподавателей с первой категорией. Например: 3</span>
 
 	<label for="app-shell-oop-create-step9-second" class="form-control-label">Численность штатных со второй категорией:</label>	
-		<input type="number" data-target="app-shell-oop-create-step9-second" class="form-control-input tooltip" placeholder="">
+		<input value="{{ secondCategoryEmployeeAmount }}" type="number" data-target="app-shell-oop-create-step9-second" data-bind="Oop.secondCategoryEmployeeAmount" class="form-control-input tooltip" placeholder="">
 		<span class="app-shell-oop-create-step9-second form-control-input-tooltip">Необходимо указать численность штатных преподавателей со второй категорией. Например: 2</span>
 
 	<label for="app-shell-oop-create-step9-university" class="form-control-label">Численность штатных имеющих высшее образования:</label>	
-		<input type="number" data-target="app-shell-oop-create-step9-university" class="form-control-input tooltip" placeholder="">
+		<input value="{{ universityEducationEmployeeAmount }}" type="number" data-target="app-shell-oop-create-step9-university" data-bind="Oop.universityEducationEmployeeAmount" class="form-control-input tooltip" placeholder="">
 		<span class="app-shell-oop-create-step9-university form-control-input-tooltip">Необходимо указать численность штатных преподавателей имеющих высшее образование. Например: 1</span>	
 	<br>
 	<input class="prev-btn" type="button" data-page="shell.oop.create.step8" data-save-query="true" value="Назад" />

@@ -4,14 +4,12 @@ app.shell.oop = new Page({
 	'templateUrl'	: 'tmpl/app.shell.oop.html',
 	'handlers'		: function() {
 
-						$child = $('#oop-dev');
-
-						$child
-							.on('click', '[data-target="create-new-oop"]', _onCreateOopButtonClick)		
+						$(document)
+							.on('click', '[data-target="create-new-oop"]', _onCreateOopButtonClick);		
 
 						function _onCreateOopButtonClick(events) {
 							
-							var year = $child.find('[data-target="oop-creation-year"]').val(),
+							var year = $('[data-target="oop-creation-year"]').val(),
 								uId  = app.data.getByStorage('userInfo').id;
 							
 							app.data.execute({
@@ -22,6 +20,10 @@ app.shell.oop = new Page({
 										throw new Error('Oop creation error');
 									} else {
 										app.data.setToStorage('Oop_' + response.id, response);
+										app.buffer['Oop_' + response.id] = new Model({
+											basic: 'Oop',
+											data:  response
+										});
 										app.changePage('shell.oop.create', 'year=' + year + '&id=' + response.id);
 									}									
 								}

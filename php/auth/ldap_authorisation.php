@@ -37,7 +37,7 @@
 
 	require_once('ldap_functions.php');
 
-	$clearLogin = strtolower($_POST['login']);
+	$clearLogin = $_POST['login'];
 	
 	if(($pos = strpos($clearLogin,"/")) !== false) {
 		$clearLogin = substr($clearLogin, $pos + 1, strlen($clearLogin) - $pos);	
@@ -48,14 +48,18 @@
 	}
 
 	if ((auth($clearLogin . "@" . $ad_ugrasu['domain'], $_POST['password'], $ad_ugrasu)==0)) {
+	
 		$request = $messages['err'];
 		unset($_SESSION['u_login']);
 		die(json_encode($request, JSON_UNESCAPED_UNICODE));
+	
 	} else {
+		
 		$_SESSION['u_login'] = $clearLogin;
 
 		// authorisation example
 		// TO-DO: get data from request
+		
 		$login  = 'a_gusakov';
 		$passwd = 'a_gusakov';
 
@@ -66,7 +70,7 @@
 		// ini curl connection
 		$ch = curl_init();
 
-		$_SESSION['u_login'] = 'tey_d';
+		// $_SESSION['u_login'] = 'tey_d';
 
 		curl_setopt($ch, CURLOPT_URL, 'http://192.168.0.60:8080/rpd/api/users/getByLogin?login=' . $_SESSION['u_login']);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);

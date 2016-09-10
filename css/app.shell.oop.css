@@ -42,3 +42,27 @@
 [data-tip]:hover:after {
   display:block;
 }
+
+#app-shell-oop-mine-table{
+    text-align: center;
+    
+}
+#app-shell-oop-mine-table th,td{
+    border-bottom: 1px solid #bdc3c7;
+    border-right: 1px solid #bdc3c7;
+    padding: 5px;  
+}
+#app-shell-oop-mine-table th:nth-child(1),td:nth-child(1){
+    border-left: 1px solid #bdc3c7;
+  
+}
+#app-shell-oop-mine-table tr:nth-child(1) th{
+    border-top: 1px solid #bdc3c7;
+    padding: 15px 5px 15px 5px;
+    font-size: 17px;
+        
+}
+.form-control-btn-delete{
+    margin: 0;
+    position: static;
+}

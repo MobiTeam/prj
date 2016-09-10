@@ -6,7 +6,12 @@
                 "desc" : "на текущий год",
                 "page" : "shell.oop",
                 "saveQuery": "false"
-            }
+            },
+            {
+                "title": "ООП",
+                "desc" : "Мои",
+                "page" : "shell.oop.mine"
+            }  
         ],
         "shell.oop": [
             {
@@ -14,7 +19,7 @@
                 "desc" : "на текущий год",
                 "page" : "shell.oop",
                 "saveQuery": "false"
-            }  
+            }
         ], 
         "shell.oop.create": [
             {

@@ -22,7 +22,7 @@ app.data = (function($) {
 		if(!that || !localStorage[that]) return null;
 
 		if(_buffer[that]) {
-			console.log('load data from buffer');
+			console.log('load data from buffer - [' + that + "]");
 			return _buffer[that];
 		} else {
 			try {
@@ -73,16 +73,22 @@ app.data = (function($) {
 			success: function(response) {
 				param.callback && param.callback(response);	
 			},
-			error: function(response) {					
-				if((response.status >= 200 && response.status < 300) || response.status == 304) {
-					throw new Error('JSON parse error');
-				} else {
-					throw new Error('Server is offline');
-				}
+			error: function(response) {		
+				param.callback && param.callback(response);			
+				// write correct handlers
+				// if((response.status >= 200 && response.status < 300) || response.status == 304) {
+				// 	param.callback && param.callback(response);
+				// 	throw new Error('JSON parse error');
+				// } else {
+				// 	throw new Error('Server is offline');
+				// }
+			},
+			complete: function() {
+				
 			},
 			cache: false
-		})
-	
+		})	
+
 	} 
 	
 	function _isObject(data) {
